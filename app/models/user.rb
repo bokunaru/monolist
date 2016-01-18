@@ -12,8 +12,16 @@ class User < ActiveRecord::Base
   has_many :followed_relationships, class_name:  "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followed_users, through: :followed_relationships, source: :follower
 
-  has_many :ownerships , foreign_key: "user_id", dependent: :destroy
-  has_many :items ,through: :ownerships
+  #多対多
+  has_many :ownerships, foreign_key: "user_id", dependent: :destroy
+  has_many :items, through: :ownerships
+
+  # Want, Haveしているアイテムへの関連を実装
+  # class_name を指定することで、ownershipsテーブルからtypeがWantであるものを取得できる
+  has_many :wants, class_name: "Want", foreign_key: "user_id", dependent: :destroy 
+  has_many :want_items, through: :wants, source: :item
+  has_many :haves, class_name: "Have", foreign_key: "user_id", dependent: :destroy
+  has_many :have_items, through: :haves, source: :item
 
 
   # 他のユーザーをフォローする
