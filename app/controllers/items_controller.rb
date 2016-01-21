@@ -15,6 +15,10 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def item_image
+    @item_image = item.get("LargeImage/URL")
+  end
+
   private
   def set_item
     @item = Item.find(params[:id])
