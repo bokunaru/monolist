@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   end
 
   def have?(item)
-    have_item.include?(item)
+    have_items.include?(item)
   end
 
   def want(item)
@@ -61,6 +61,6 @@ class User < ActiveRecord::Base
   end
 
   def want?(item)
-    want_item.include?(item)
+    want_items.include?(item)
   end
 end
