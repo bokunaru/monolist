@@ -13,6 +13,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item_haves_users = @item.have_users
+    @item_wants_users = @item.want_users
   end
 
   def item_image
